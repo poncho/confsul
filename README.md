@@ -1,6 +1,25 @@
 # Confsul
+Configure your Elixir apps using Consul
 
-**TODO: Add description**
+## Configuration
+Set your Consul client configuration in the config.exs
+```
+config :consul,
+  host: "consul",
+  port: 8500
+```
+
+Set the Consul folder where your keys are in the config.exs
+```
+config: :app_name,
+  consul_folder: "/path/"
+```
+
+## Use
+Load the config process using your app name
+```
+Confsul.Config.start(:app_name)
+```
 
 ## Installation
 

@@ -21,6 +21,7 @@ defmodule Confsul.Mixfile do
 
   defp deps do
     [
+      {:ex_doc, ">= 0.0.0", only: :dev},
       {:consul, "~> 1.1"}
     ]
   end
@@ -34,7 +35,8 @@ defmodule Confsul.Mixfile do
   defp package do
     [
       name: :confsul,
-      files: ["lib", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
+      files: ["lib", "mix.exs", "README*"],
+      licenses: ["MIT"],
       maintainers: ["Alfonso Martínez"],
       links: %{"GitHub" => "https://github.com/ponchomf/confsul"}
     ]
