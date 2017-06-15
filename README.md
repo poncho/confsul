@@ -1,5 +1,5 @@
 # Confsul
-Configure your Elixir apps using Consul
+Configure your Elixir apps using [Consul](https://github.com/hashicorp/consul)
 
 ## Configuration
 Set your Consul client configuration in the config.exs
