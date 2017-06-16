@@ -32,6 +32,7 @@ defmodule Confsul.Config do
       {:ok, response} ->
         response
         |> Map.get(:body)
+        |> Enum.filter(fn option -> !Regex.match?(~r/.*\/$/, option) end)
         |> Enum.reduce(%{}, fn option, acc ->
           Map.put(acc, key(option), get_value(option))
         end)
@@ -71,9 +72,11 @@ defmodule Confsul.Config do
     result && length(result) > 1 && Enum.at(result, 1) || "nokey"
   end
 
-  # Parses the value
+  @doc """
+  Parses the value to the correct type
+  """
   @spec parse(String.t) :: any
-  defp parse(value) do
+  def parse(value) do
     fvalue = String.downcase(value)
     # If boolean
     if fvalue == "true" || fvalue == "false" do
@@ -85,7 +88,7 @@ defmodule Confsul.Config do
           case Float.parse(value) do
             {number, ""} ->
               number # If float
-            {_, _} ->
+            _ ->
               value
           end
       end
