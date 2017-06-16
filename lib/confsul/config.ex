@@ -21,6 +21,13 @@ defmodule Confsul.Config do
   @spec load(atom) :: map
   def load(app) do
     folder = Application.get_env(app, :config_folder)
+    _load(folder)
+  end
+
+  # Loads the config data only when the folder is not empty
+  @spec _load(String.t) :: map
+  defp _load(nil), do: %{}
+  defp _load(folder) do
     case Consul.Kv.keys(folder) do
       {:ok, response} ->
         response
